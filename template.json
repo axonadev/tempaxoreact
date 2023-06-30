@@ -1,0 +1,26 @@
+{
+    "package": {
+      "dependencies": {
+        "@testing-library/jest-dom": "^5.16.5",
+        "@testing-library/react": "^13.4.0",
+        "@testing-library/user-event": "^13.5.0",
+        "axonaform": "^0.1.14",
+        "axonalib": "^0.1.12",
+        "axonaui": "^0.1.4",
+        "web-vitals": "^2.1.4"
+      },
+      "scripts": {
+        "start": "react-scripts start",
+        "build": "NODE_ENV=production react-scripts build",
+        "build:test": "NODE_ENV=test react-scripts build",
+        "build:prod": "NODE_ENV=production react-scripts build",
+        "test": "react-scripts test",
+        "eject": "react-scripts eject",
+        "updaxo": "npm i axonaui && npm i axonalib && npm i axonaform"
+        
+      },
+      "eslintConfig": {
+        "extends": ["react-app", "react-app/jest"]
+      }
+    }
+  }
