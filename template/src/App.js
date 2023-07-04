@@ -1,6 +1,7 @@
 import "./App.css";
 import { useToken } from "axonalib";
 import Layout from "./Layout/Layout";
+import { LoadingSpinner } from "axonaui";
 
 const App = () => {
   const { connesso } = useToken(
@@ -10,7 +11,7 @@ const App = () => {
 
   return (
     <div className="App">
-      {connesso === 0 && <label>caricamento....</label>}
+      {connesso === 0 && <LoadingSpinner />}
       {connesso === 1 && <Layout />}
     </div>
   );

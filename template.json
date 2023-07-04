@@ -16,11 +16,19 @@
         "build:prod": "NODE_ENV=production react-scripts build",
         "test": "react-scripts test",
         "eject": "react-scripts eject",
-        "updaxo": "npm i axonaui && npm i axonalib && npm i axonaform"
+        "updaxo": "npm i axonaui && npm i axonalib && npm i axonaform",
+        "doc": "styleguidist server",
+        "docbuild": "styleguidist build && xcopy \"styleguide\" \"T:\\doc\\[NOMEPROGETTO]\" /h /e /y /i "
         
       },
       "eslintConfig": {
         "extends": ["react-app", "react-app/jest"]
+      }, 
+      "devDependencies": {
+        "@babel/cli": "^7.21.5",
+        "@babel/core": "^7.21.8",
+        "@babel/preset-env": "^7.21.5",
+        "react-styleguidist": "^13.1.1"
       },
       "hompage":"/"
     }

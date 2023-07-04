@@ -1,6 +1,6 @@
 {
   "name": "cra-template-tempaxoreact",
-  "version": "0.1.5",
+  "version": "0.1.7",
   "private": false,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
@@ -8,7 +8,7 @@
     "@testing-library/user-event": "^13.5.0",
     "axonaform": "^0.1.14",
     "axonalib": "^0.1.12",
-    "axonaui": "^0.1.4",
+    "axonaui": "^0.1.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
@@ -43,7 +43,6 @@
   },
   "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
   "main": "index.js",
-  "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/axonadev/tempaxoreact.git"
