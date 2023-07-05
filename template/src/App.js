@@ -1,7 +1,7 @@
 import "./App.css";
 import { useToken } from "axonalib";
 import Layout from "./Layout/Layout";
-import { LoadingSpinner } from "axonaui";
+import { LoadingSpinner, CssStruct } from "axonaui";
 
 const App = () => {
   const { connesso } = useToken(
@@ -10,10 +10,15 @@ const App = () => {
   );
 
   return (
-    <div className="App">
-      {connesso === 0 && <LoadingSpinner />}
-      {connesso === 1 && <Layout />}
-    </div>
+    <CssStruct
+      url={process.env.REACT_APP_CSSFOLDER}
+      piva={localStorage.getItem("axn_piva")}
+    >
+      <div className="App">
+        {connesso === 0 && <LoadingSpinner />}
+        {connesso === 1 && <Layout />}
+      </div>
+    </CssStruct>
   );
 };
 

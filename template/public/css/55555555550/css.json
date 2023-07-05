@@ -1,0 +1,16 @@
+{
+    "root":
+        {
+          
+        },
+    "id":{
+        "btntest":{
+            "color":"blue",
+            "width":"200px",
+            "font-size":"30px",
+            "background-color":"yellow"
+            }
+    }
+
+    
+}
