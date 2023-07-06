@@ -16,7 +16,7 @@ const App = () => {
     >
       <div className="App">
         {connesso === 0 && <LoadingSpinner />}
-        {connesso === 1 && <Layout />}
+        {connesso === 1 && <Layout piva={localStorage.getItem("axn_piva")} />}
       </div>
     </CssStruct>
   );
