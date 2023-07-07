@@ -1,4 +1,4 @@
-import { Header } from "axonaui";
+import { Header, SideMenu } from "axonaui";
 const Layout = ({ piva }) => {
   return (
     <>
@@ -6,6 +6,7 @@ const Layout = ({ piva }) => {
         logo={process.env.REACT_APP_IMGFOLDER + "/" + piva + "/logo.png"}
         titolo={"titolo"}
       />
+      <SideMenu />
     </>
   );
 };
