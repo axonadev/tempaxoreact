@@ -1,4 +1,5 @@
-import { Header, SideMenu } from "axonaui";
+import { Header, SideMenu, ContentForm } from "axonaui";
+import Project from "../Pages/Project";
 const Layout = ({ piva }) => {
   return (
     <>
@@ -7,6 +8,9 @@ const Layout = ({ piva }) => {
         titolo={"titolo"}
       />
       <SideMenu />
+      <ContentForm>
+        <Project />
+      </ContentForm>
     </>
   );
 };
