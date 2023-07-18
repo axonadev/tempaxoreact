@@ -1,6 +1,6 @@
 {
   "name": "cra-template-tempaxoreact",
-  "version": "0.1.18",
+  "version": "0.1.19",
   "private": false,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
@@ -8,7 +8,7 @@
     "@testing-library/user-event": "^13.5.0",
     "axonaform": "^0.1.15",
     "axonalib": "^0.1.13",
-    "axonaui": "^0.1.44",
+    "axonaui": "^0.1.48",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
