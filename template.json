@@ -7,7 +7,9 @@
         "axonaform": "^0.1.14",
         "axonalib": "^0.1.12",
         "axonaui": "^0.1.4",
-        "web-vitals": "^2.1.4"
+        "web-vitals": "^2.1.4",
+        "chart.js": "^4.3.0",
+        "react-chartjs-2": "^5.2.0"
       },
       "scripts": {
         "start": "set NODE_ENV=development && react-scripts start",
@@ -16,7 +18,8 @@
         "build:prod": "set NODE_ENV=production && react-scripts build",
         "test": "react-scripts test",
         "eject": "react-scripts eject",
-        "updaxo": "npm i axonaui && npm i axonalib && npm i axonaform",
+        "upd": "npm i axonaui && npm i axonalib && npm i axonaform",
+        "reload" : "npm rm -rf node_modules && npm install --save core-js && npm install",
         "doc": "styleguidist server",
         "docbuild": "styleguidist build && xcopy \"styleguide\" \"T:\\doc\\[NOMEPROGETTO]\" /h /e /y /i "
         
