@@ -1,6 +1,6 @@
 {
   "name": "cra-template-tempaxoreact",
-  "version": "0.1.20",
+  "version": "0.1.21",
   "private": false,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
@@ -8,7 +8,7 @@
     "@testing-library/user-event": "^13.5.0",
     "axonaform": "^0.1.15",
     "axonalib": "^0.1.13",
-    "axonaui": "^0.1.48",
+    "axonaui": "^0.1.55",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
@@ -21,7 +21,8 @@
     "build:prod": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "updaxo": "npm i axonaui && npm i axonalib && npm i axonaform"
+    "upd": "npm i axonaui && npm i axonalib && npm i axonaform",
+    "reload": "npm rm -rf node_modules && npm install --save core-js && npm install"
   },
   "eslintConfig": {
     "extends": [
