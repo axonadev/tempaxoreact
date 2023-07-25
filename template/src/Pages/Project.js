@@ -1,24 +1,16 @@
 import React, { useState } from "react";
 import { useForm, Input, Form, Frame, FrameInRow, Grid } from "axonaui";
 const Project = () => {
-  const nameView = "soggetti";
-  const getRow = "/soggetti/soggettisel/getrow/";
+  const nameView = "v_soggetti";
+  const nameTable = "soggetti";
+  const cmd_getForm = "/soggetti/soggettisel/getrow/";
+  const cmd_getGrid = "/soggetti/soggettisel/leggisoggetti";
   const moduloForm = "soggetti";
   const dbForm = "soggetti";
 
   const [idobj_T, setIdobj_T] = useState(0);
   const { onChangeSelected } = useForm();
 
-  const columns = [{ dbField: "IDOBJ", label: "IDOBJ", order: 0 }];
-  const items = [
-    {
-      IDOBJ: 1.0,
-      AZIENDA: "00000000000",
-      Soggetti_Nome1: "Emanuele",
-      Soggetti_Nome2: "Croce",
-      Soggetti_Indirizzo: "via da qui",
-    },
-  ];
   const itemsSearch = ["Soggetti_Nome1", "Soggetti_Nome2"];
 
   return (
@@ -28,18 +20,23 @@ const Project = () => {
       <Frame label="TESTATA" type="form_t">
         <Grid
           id="idGriglia"
-          columns={columns}
-          items={items}
-          itemSearch={itemsSearch}
+          itemsSearch={itemsSearch}
+          loadGrid={
+            process.env.REACT_APP_SERVERAPI +
+            "api/axo_sel/" +
+            localStorage.getItem("axn_token") +
+            cmd_getGrid
+          }
+          nameView={nameView}
           onClickRow={(IDOBJ) => {
             setIdobj_T(IDOBJ);
             onChangeSelected(
               process.env.REACT_APP_SERVERAPI +
                 "api/axo_sel/" +
                 localStorage.getItem("axn_token") +
-                getRow +
+                cmd_getForm +
                 IDOBJ,
-              nameView
+              nameTable
             );
           }}
           btn_insert={true}
