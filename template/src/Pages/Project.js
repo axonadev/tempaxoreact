@@ -6,12 +6,9 @@ const Project = () => {
   const cmd_getForm = "/soggetti/soggettisel/getrow/";
   const cmd_getGrid = "/soggetti/soggettisel/leggisoggetti";
   const moduloForm = "soggetti";
-  const dbForm = "soggetti";
 
   const [idobj_T, setIdobj_T] = useState(0);
   const { onChangeSelected } = useForm();
-
-  const itemsSearch = ["Soggetti_Nome1", "Soggetti_Nome2"];
 
   return (
     <>
@@ -19,8 +16,7 @@ const Project = () => {
 
       <Frame label="TESTATA" type="form_t">
         <Grid
-          id="idGriglia"
-          itemsSearch={itemsSearch}
+          id="maint_t"
           loadGrid={
             process.env.REACT_APP_SERVERAPI +
             "api/axo_sel/" +
@@ -49,7 +45,7 @@ const Project = () => {
         id="form_t"
         idobj={idobj_T}
         modulo={moduloForm}
-        db={dbForm}
+        db={nameTable}
         serverApi={process.env.REACT_APP_SERVERAPI}
       >
         <Frame label="DATI DI PROVA">
