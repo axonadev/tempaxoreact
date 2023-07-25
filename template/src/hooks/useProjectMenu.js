@@ -1,36 +1,27 @@
+import { ProjectMenuForm } from "axonaform";
 import React, { useState, useEffect } from "react";
+import ProjectMenuFormPers, {
+  getProjectMenuItemPers,
+} from "../components/ProjectMenuFormPers/ProjectMenuFormPers";
+import { getProjectMenuItem } from "axonaform";
+
 const useProjectMenu = () => {
   const [items, setItems] = useState([]);
   const [answerReq, setAnserReq] = useState([]);
 
-  const calendario = () => {
-    console.log("funzione esterna");
-  };
-
   useEffect(() => {
-    const itemspj = [
-      {
-        id: 0,
-        label: "Anni",
-        img: "calendar",
-        function: () => {
-          calendario();
-        },
-      },
-      {
-        id: 1,
-        label: "Contabilizzazione",
-        img: "print",
-        function: () => {
-          console.log("click stampa");
-        },
-      },
-    ];
-
-    setItems(itemspj);
+    const itemspj = getProjectMenuItem();
+    const itemsppers = getProjectMenuItemPers();
+    setItems(itemspj.concat(itemsppers));
   }, []);
+
   const getFormMenuPj = (idItem) => {
-    return <input type="date" />;
+    return (
+      <>
+        <ProjectMenuForm idItem={idItem} />
+        <ProjectMenuFormPers idItem={idItem} />
+      </>
+    );
   };
   const processRequest = (evt) => {
     setAnserReq([
