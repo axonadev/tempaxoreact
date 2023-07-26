@@ -5,11 +5,11 @@ import { useEnv } from "axonalib";
 const Project = () => {
   const { REACT_APP_SERVERAPI } = useEnv();
 
-  const nameView = "v_soggetti";
-  const nameTable = "soggetti";
-  const cmd_getForm = "/soggetti/soggettisel/getrow/";
-  const cmd_getGrid = "/soggetti/soggettisel/leggisoggetti";
   const moduloForm = "soggetti";
+  const nameView = "v_" + moduloForm;
+  const nameTable = moduloForm;
+  const cmd_getForm = "/" + moduloForm + "/" + moduloForm + "sel/getrow/";
+  const cmd_getGrid = "/" + moduloForm + "/" + moduloForm + "sel/leggi";
 
   const [focusForm, setFocusForm] = useState("");
   const [statoGriglia, setStatoGriglia] = useState("");
