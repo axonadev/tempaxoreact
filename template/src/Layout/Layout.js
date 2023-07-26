@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { Header, SideMenu, ContentForm, ProjectMenu } from "axonaui";
+import { useEnv } from "axonalib";
 import Project from "../Pages/Project";
 import useProjectMenu from "../hooks/useProjectMenu";
 
 const Layout = () => {
+  const { REACT_APP_IMGFOLDER } = useEnv();
   const [styleMenu, setStyleMenu] = useState(
     localStorage.getItem("axn_sidemenuswitch") === "true" ? true : false
   );
@@ -31,7 +33,7 @@ const Layout = () => {
       <Header
         titolo={"titolo"}
         logo={
-          process.env.REACT_APP_IMGFOLDER +
+          REACT_APP_IMGFOLDER +
           "/" +
           localStorage.getItem("axn_piva") +
           "/logo.png"
@@ -39,7 +41,7 @@ const Layout = () => {
       />
       <SideMenu
         onSideMenuChange={onSideMenuChangeHandler}
-        pathImg={process.env.REACT_APP_IMGFOLDER}
+        pathImg={REACT_APP_IMGFOLDER}
       />
       <ContentForm sidemenuopen={styleMenu} request={answerReq}>
         <Project />
@@ -47,7 +49,7 @@ const Layout = () => {
       <ProjectMenu
         items={pjItems}
         onClick={projectMenuClickHandler}
-        pathImg={process.env.REACT_APP_IMGFOLDER}
+        pathImg={REACT_APP_IMGFOLDER}
         onRequestSubmit={projectMenuRequestSubmitHandler}
       >
         {formPj}

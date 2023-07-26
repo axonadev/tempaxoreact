@@ -1,17 +1,19 @@
 import "./App.css";
-import { useToken } from "axonalib";
+import { useToken, useEnv } from "axonalib";
 import Layout from "./Layout/Layout";
 import { LoadingSpinner, CssStruct } from "axonaui";
 
 const App = () => {
+  const { REACT_APP_CSSFOLDER, REACT_APP_SERVERAPI } = useEnv();
+
   const { connesso } = useToken(
-    process.env.REACT_APP_SERVERAPI + "api/axo_login",
+    REACT_APP_SERVERAPI + "api/axo_login",
     localStorage.getItem("axn_token")
   );
 
   return (
     <CssStruct
-      url={process.env.REACT_APP_CSSFOLDER}
+      url={REACT_APP_CSSFOLDER}
       piva={localStorage.getItem("axn_piva")}
     >
       <div className="App">

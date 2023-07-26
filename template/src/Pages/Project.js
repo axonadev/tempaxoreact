@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import { useForm, Input, Form, Frame, FrameInRow, Grid } from "axonaui";
+import { useEnv } from "axonalib";
+
 const Project = () => {
+  const { REACT_APP_SERVERAPI } = useEnv();
+
   const nameView = "v_soggetti";
   const nameTable = "soggetti";
   const cmd_getForm = "/soggetti/soggettisel/getrow/";
@@ -27,7 +31,7 @@ const Project = () => {
           id="maint_t"
           stato={statoGriglia}
           loadGrid={
-            process.env.REACT_APP_SERVERAPI +
+            REACT_APP_SERVERAPI +
             "api/axo_sel/" +
             localStorage.getItem("axn_token") +
             cmd_getGrid
@@ -38,7 +42,7 @@ const Project = () => {
             setFocusForm("form_t");
             setStatoGriglia("");
             onChangeSelected(
-              process.env.REACT_APP_SERVERAPI +
+              REACT_APP_SERVERAPI +
                 "api/axo_sel/" +
                 localStorage.getItem("axn_token") +
                 cmd_getForm +
@@ -59,7 +63,7 @@ const Project = () => {
           idobj={idobj_T}
           modulo={moduloForm}
           db={nameTable}
-          serverApi={process.env.REACT_APP_SERVERAPI}
+          serverApi={REACT_APP_SERVERAPI}
         >
           <Frame label="DATI DI PROVA">
             <FrameInRow width={[80, 10, 10]}>
