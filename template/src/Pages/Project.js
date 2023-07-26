@@ -13,6 +13,7 @@ const Project = () => {
 
   const [focusForm, setFocusForm] = useState("");
   const [statoGriglia, setStatoGriglia] = useState("");
+  const [reloadGriglia, setReloadGriglia] = useState(0);
   const [idobj_T, setIdobj_T] = useState(0);
   const { onChangeSelected, onReset } = useForm();
 
@@ -55,6 +56,7 @@ const Project = () => {
             console.log("click");
           }}
           onBtnInsert={insertClickHandler}
+          reload={reloadGriglia}
         />
       </Frame>
       {focusForm === "form_t" && (
@@ -64,6 +66,20 @@ const Project = () => {
           modulo={moduloForm}
           db={nameTable}
           serverApi={REACT_APP_SERVERAPI}
+          afterSubmit={() => {
+            setReloadGriglia((item) => {
+              return item + 1;
+            });
+            setStatoGriglia("");
+            onChangeSelected(
+              REACT_APP_SERVERAPI +
+                "api/axo_sel/" +
+                localStorage.getItem("axn_token") +
+                cmd_getForm +
+                idobj_T,
+              nameTable
+            );
+          }}
         >
           <Frame label="DATI DI PROVA">
             <FrameInRow width={[80, 10, 10]}>
