@@ -25,6 +25,37 @@ const Project = () => {
     setIdobj_T(0);
   };
 
+  const onLoadRow = () => {
+    setReloadGriglia((item) => {
+      return item + 1;
+    });
+
+    setStatoGriglia("");
+    onChangeSelected(
+      REACT_APP_SERVERAPI +
+        "api/axo_sel/" +
+        localStorage.getItem("axn_token") +
+        cmd_getForm +
+        idobj_T,
+      nameTable
+    );
+  };
+  const onChangeRow = (idobj) => {
+    setIdobj_T(idobj);
+    setFocusForm("form_t");
+    setStatoGriglia("");
+    onChangeSelected(
+      REACT_APP_SERVERAPI +
+        "api/axo_sel/" +
+        localStorage.getItem("axn_token") +
+        cmd_getForm +
+        idobj,
+      nameTable
+    );
+  };
+
+  const itemFolders = [{ key: 1, label: 2, img: "image", target: "idTarget" }];
+
   return (
     <>
       <Frame label="TESTATA" type="form_t">
@@ -38,18 +69,9 @@ const Project = () => {
             cmd_getGrid
           }
           nameView={nameView}
+          onAnnulla={onLoadRow()}
           onClickRow={(IDOBJ) => {
-            setIdobj_T(IDOBJ);
-            setFocusForm("form_t");
-            setStatoGriglia("");
-            onChangeSelected(
-              REACT_APP_SERVERAPI +
-                "api/axo_sel/" +
-                localStorage.getItem("axn_token") +
-                cmd_getForm +
-                IDOBJ,
-              nameTable
-            );
+            onChangeRow(IDOBJ);
           }}
           btn_insert={true}
           onDoubleClickRow={() => {
@@ -66,20 +88,8 @@ const Project = () => {
           modulo={moduloForm}
           db={nameTable}
           serverApi={REACT_APP_SERVERAPI}
-          afterSubmit={() => {
-            setReloadGriglia((item) => {
-              return item + 1;
-            });
-            setStatoGriglia("");
-            onChangeSelected(
-              REACT_APP_SERVERAPI +
-                "api/axo_sel/" +
-                localStorage.getItem("axn_token") +
-                cmd_getForm +
-                idobj_T,
-              nameTable
-            );
-          }}
+          folders={itemFolders}
+          afterSubmit={onLoadRow}
         >
           <Frame label="DATI DI PROVA">
             <FrameInRow width={[80, 10, 10]}>
