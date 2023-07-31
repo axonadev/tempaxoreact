@@ -1,5 +1,14 @@
 import React, { useState } from "react";
-import { useForm, Input, Form, Frame, FrameInRow, Grid } from "axonaui";
+import {
+  useForm,
+  Input,
+  InputCheckBox,
+  InputData,
+  Form,
+  Frame,
+  FrameInRow,
+  Grid,
+} from "axonaui";
 import { useEnv } from "axonalib";
 
 const Project = () => {
@@ -14,6 +23,7 @@ const Project = () => {
   const [focusForm, setFocusForm] = useState("");
   const [statoGriglia, setStatoGriglia] = useState("");
   const [reloadGriglia, setReloadGriglia] = useState(0);
+  const [formPj, setFormPj] = useState(null);
   const [idobj_T, setIdobj_T] = useState(0);
   const { onChangeSelected, onReset } = useForm();
 
@@ -23,6 +33,9 @@ const Project = () => {
     setFocusForm(idform);
     setStatoGriglia("INSERIMENTO");
     setIdobj_T(0);
+  };
+  const deleteClickHandler = (idGriglia) => {
+    console.log(idGriglia);
   };
 
   const onLoadRow = () => {
@@ -54,14 +67,16 @@ const Project = () => {
     );
   };
 
-  const itemFolders = [{ key: 1, label: 2, img: "image", target: "idTarget" }];
-
+  const itemFolders = [
+    { key: 1, label: "label", img: "image", target: "idTarget" },
+  ];
+  const itemsSearch = ["Soggetti_Nome1", "Soggetti_Nome2"];
   return (
     <>
       <Frame label="TESTATA" type="form_t">
         <Grid
           id="maint_t"
-          stato={statoGriglia}
+          itemSearch={itemsSearch}
           loadGrid={
             REACT_APP_SERVERAPI +
             "api/axo_sel/" +
@@ -69,7 +84,6 @@ const Project = () => {
             cmd_getGrid
           }
           nameView={nameView}
-          onAnnulla={onLoadRow()}
           onClickRow={(IDOBJ) => {
             onChangeRow(IDOBJ);
           }}
@@ -78,6 +92,7 @@ const Project = () => {
             console.log("click");
           }}
           onBtnInsert={insertClickHandler}
+          onBtnDelete={deleteClickHandler}
           reload={reloadGriglia}
         />
       </Frame>
@@ -90,20 +105,16 @@ const Project = () => {
           serverApi={REACT_APP_SERVERAPI}
           folders={itemFolders}
           afterSubmit={onLoadRow}
+          onAnnulla={onLoadRow}
         >
           <Frame label="DATI DI PROVA">
             <FrameInRow width={[80, 10, 10]}>
               <Input label="prova" id="Soggetti_Nome1"></Input>
               <Input label="prova" id="Soggetti_Nome2"></Input>
-              <Input label="prova"></Input>
+              <InputData label="Scadenza" id="Soggetti_ScadenzaObj" />
             </FrameInRow>
             <FrameInRow width={[30, 30, 40]}>
-              <Input label="prova"></Input>
-              <Input label="prova"></Input>
-              <Input label="prova"></Input>
-            </FrameInRow>
-            <FrameInRow width={[20, 20]}>
-              <Input label="prova"></Input>
+              <InputCheckBox label="checkbox" />
               <Input label="prova"></Input>
             </FrameInRow>
           </Frame>
