@@ -4,6 +4,7 @@ import {
   Input,
   InputCheckBox,
   InputData,
+  InputList,
   Form,
   Frame,
   FrameInRow,
@@ -20,12 +21,16 @@ const Project = () => {
   const cmd_getForm = "/" + moduloForm + "/" + moduloForm + "sel/getrow/";
   const cmd_getGrid = "/" + moduloForm + "/" + moduloForm + "sel/leggi";
 
+  const itemFolders = [
+    { key: 1, label: "label", img: "image", target: "idTarget" },
+  ];
+  const itemsSearch = ["Soggetti_Nome1", "Soggetti_Nome2"];
+
   const [focusForm, setFocusForm] = useState("");
   const [statoGriglia, setStatoGriglia] = useState("");
   const [reloadGriglia, setReloadGriglia] = useState(0);
-  const [formPj, setFormPj] = useState(null);
   const [idobj_T, setIdobj_T] = useState(0);
-  const { onChangeSelected, onReset } = useForm();
+  const { onChangeSelected, onReset, formValue } = useForm();
 
   const insertClickHandler = (idGriglia) => {
     const idform = "form_" + idGriglia.split("_")[1];
@@ -67,33 +72,29 @@ const Project = () => {
     );
   };
 
-  const itemFolders = [
-    { key: 1, label: "label", img: "image", target: "idTarget" },
-  ];
-  const itemsSearch = ["Soggetti_Nome1", "Soggetti_Nome2"];
   return (
     <>
-      <Frame label="TESTATA" type="form_t">
+      <Frame label="TESTATA" type="form_t" stato={statoGriglia}>
         <Grid
           id="maint_t"
-          itemSearch={itemsSearch}
           loadGrid={
             REACT_APP_SERVERAPI +
             "api/axo_sel/" +
             localStorage.getItem("axn_token") +
             cmd_getGrid
           }
-          nameView={nameView}
           onClickRow={(IDOBJ) => {
             onChangeRow(IDOBJ);
           }}
-          btn_insert={true}
           onDoubleClickRow={() => {
             console.log("click");
           }}
           onBtnInsert={insertClickHandler}
           onBtnDelete={deleteClickHandler}
+          btn_insert={true}
+          nameView={nameView}
           reload={reloadGriglia}
+          itemSearch={itemsSearch}
         />
       </Frame>
       {focusForm === "form_t" && (
@@ -109,13 +110,25 @@ const Project = () => {
         >
           <Frame label="DATI DI PROVA">
             <FrameInRow width={[80, 10, 10]}>
-              <Input label="prova" id="Soggetti_Nome1"></Input>
-              <Input label="prova" id="Soggetti_Nome2"></Input>
-              <InputData label="Scadenza" id="Soggetti_ScadenzaObj" />
+              <Input label="prova" id="Soggetti_Nome1" val={formValue}></Input>
+              <Input label="prova" id="Soggetti_Nome2" val={formValue}></Input>
+              <InputData
+                label="Scadenza"
+                id="Soggetti_ScadenzaOBJ"
+                val={formValue}
+              />
             </FrameInRow>
             <FrameInRow width={[30, 30, 40]}>
-              <InputCheckBox label="checkbox" />
-              <Input label="prova"></Input>
+              <InputCheckBox label="checkbox" val={formValue} />
+              <InputList
+                label="lista"
+                id=""
+                url=""
+                nameList=""
+                field_id=""
+                field_description={[""]}
+                val={formValue}
+              />
             </FrameInRow>
           </Frame>
         </Form>
