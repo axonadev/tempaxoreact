@@ -27,6 +27,11 @@
       "eslintConfig": {
         "extends": ["react-app", "react-app/jest"]
       }, 
+      "lint-staged": {
+           "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
+             "prettier --write"
+           ]
+         },
       "devDependencies": {
         "@babel/cli": "^7.21.5",
         "@babel/core": "^7.21.8",
