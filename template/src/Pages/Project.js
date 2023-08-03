@@ -6,6 +6,7 @@ import {
   InputData,
   InputList,
   Form,
+  FrameContainer,
   Frame,
   FrameInRow,
   Grid,
@@ -22,7 +23,7 @@ const Project = () => {
   const cmd_getGrid = "/" + moduloForm + "/" + moduloForm + "sel/leggi";
 
   const itemFolders = [
-    { key: 1, label: "label", img: "image", target: "idTarget" },
+    { key: 1, label: "label", img: "image", target: "terget_folder" },
   ];
   const itemsSearch = ["Soggetti_Nome1", "Soggetti_Nome2"];
 
@@ -108,29 +109,39 @@ const Project = () => {
           afterSubmit={onLoadRow}
           onAnnulla={onLoadRow}
         >
-          <Frame label="DATI DI PROVA">
-            <FrameInRow width={[80, 10, 10]}>
-              <Input label="prova" id="Soggetti_Nome1" val={formValue}></Input>
-              <Input label="prova" id="Soggetti_Nome2" val={formValue}></Input>
-              <InputData
-                label="Scadenza"
-                id="Soggetti_ScadenzaOBJ"
-                val={formValue}
-              />
-            </FrameInRow>
-            <FrameInRow width={[30, 30, 40]}>
-              <InputCheckBox label="checkbox" val={formValue} />
-              <InputList
-                label="lista"
-                id=""
-                url=""
-                nameList=""
-                field_id=""
-                field_description={[""]}
-                val={formValue}
-              />
-            </FrameInRow>
-          </Frame>
+          <FrameContainer id="terget_folder">
+            <Frame label="DATI DI PROVA">
+              <FrameInRow width={[80, 10, 10]}>
+                <Input
+                  label="prova"
+                  id="Soggetti_Nome1"
+                  val={formValue}
+                ></Input>
+                <Input
+                  label="prova"
+                  id="Soggetti_Nome2"
+                  val={formValue}
+                ></Input>
+                <InputData
+                  label="Scadenza"
+                  id="Soggetti_ScadenzaOBJ"
+                  val={formValue}
+                />
+              </FrameInRow>
+              <FrameInRow width={[30, 30, 40]}>
+                <InputCheckBox label="checkbox" val={formValue} />
+                <InputList
+                  label="lista"
+                  id=""
+                  url=""
+                  nameList=""
+                  field_id=""
+                  field_description={[""]}
+                  val={formValue}
+                />
+              </FrameInRow>
+            </Frame>
+          </FrameContainer>
         </Form>
       )}
     </>
