@@ -25,6 +25,7 @@ const Project = () => {
   const itemFolders = [
     { key: 1, label: "label", img: "image", target: "terget_folder" },
   ];
+  const idFolder1 = "terget_folder";
   const itemsSearch = ["Soggetti_Nome1", "Soggetti_Nome2"];
 
   const [focusForm, setFocusForm] = useState("");
