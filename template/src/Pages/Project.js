@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   useForm,
   Input,
@@ -13,7 +13,7 @@ import {
 } from "axonaui";
 import { useEnv } from "axonalib";
 
-const Project = () => {
+const Project = ({ request }) => {
   const { REACT_APP_SERVERAPI } = useEnv();
 
   const moduloForm = "soggetti";
@@ -32,11 +32,13 @@ const Project = () => {
   const [statoGriglia, setStatoGriglia] = useState("");
   const [reloadGriglia, setReloadGriglia] = useState(0);
   const [idobj_T, setIdobj_T] = useState(0);
-  const { onChangeSelected, onReset, formValue } = useForm();
+  const { onChangeSelected, onReset, formValue, isChanged, setIsChanged } =
+    useForm();
 
   const insertClickHandler = (idGriglia) => {
     const idform = "form_" + idGriglia.split("_")[1];
     onReset();
+    setIsChanged(false);
     setFocusForm(idform);
     setStatoGriglia("INSERIMENTO");
     setIdobj_T(0);
@@ -46,6 +48,7 @@ const Project = () => {
   };
 
   const onLoadRow = () => {
+    setIsChanged(false);
     setReloadGriglia((item) => {
       return item + 1;
     });
@@ -61,6 +64,7 @@ const Project = () => {
     );
   };
   const onChangeRow = (idobj) => {
+    setIsChanged(false);
     setIdobj_T(idobj);
     setFocusForm("form_t");
     setStatoGriglia("");
@@ -73,7 +77,15 @@ const Project = () => {
       nameTable
     );
   };
+  const onChangeInput = () => {
+    setIsChanged(true);
+  };
 
+  useEffect(() => {
+    const loadRequest = () => {};
+
+    loadRequest();
+  }, [request]);
   return (
     <>
       <Frame label="TESTATA" type="form_t" stato={statoGriglia}>
@@ -109,6 +121,7 @@ const Project = () => {
           folders={itemFolders}
           afterSubmit={onLoadRow}
           onAnnulla={onLoadRow}
+          isChanged={isChanged}
         >
           <FrameContainer id="terget_folder">
             <Frame label="DATI DI PROVA">
@@ -117,16 +130,19 @@ const Project = () => {
                   label="prova"
                   id="Soggetti_Nome1"
                   val={formValue}
+                  onChange={onChangeInput}
                 ></Input>
                 <Input
                   label="prova"
                   id="Soggetti_Nome2"
                   val={formValue}
+                  onChange={onChangeInput}
                 ></Input>
                 <InputData
                   label="Scadenza"
                   id="Soggetti_ScadenzaOBJ"
                   val={formValue}
+                  onChange={onChangeInput}
                 />
               </FrameInRow>
               <FrameInRow width={[30, 30, 40]}>
@@ -139,6 +155,7 @@ const Project = () => {
                   field_id=""
                   field_description={[""]}
                   val={formValue}
+                  onChange={onChangeInput}
                 />
               </FrameInRow>
             </Frame>
