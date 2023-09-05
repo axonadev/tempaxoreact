@@ -33,7 +33,15 @@ const Project = ({ request }) => {
   const [statoGriglia, setStatoGriglia] = useState("");
   const [reloadGriglia, setReloadGriglia] = useState(0);
   const [idobj_T, setIdobj_T] = useState(0);
-  const { onChangeSelected, onReset, formValue } = useForm();
+
+  const { onChangeSelected, onReset, onChangeForm } = useForm(
+    "form_t",
+    REACT_APP_SERVERAPI +
+      "api/axo_sel/" +
+      localStorage.getItem("axn_token") +
+      cmd_getForm,
+    nameTable
+  );
 
   const insertClickHandler = (idGriglia) => {
     const idform = "form_" + idGriglia.split("_")[1];
@@ -52,27 +60,13 @@ const Project = ({ request }) => {
     });
 
     setStatoGriglia("");
-    onChangeSelected(
-      REACT_APP_SERVERAPI +
-        "api/axo_sel/" +
-        localStorage.getItem("axn_token") +
-        cmd_getForm +
-        idobj_T,
-      nameTable
-    );
+    onChangeSelected(idobj_T);
   };
   const onChangeRow = (idobj) => {
     setIdobj_T(idobj);
     setFocusForm("form_t");
     setStatoGriglia("");
-    onChangeSelected(
-      REACT_APP_SERVERAPI +
-        "api/axo_sel/" +
-        localStorage.getItem("axn_token") +
-        cmd_getForm +
-        idobj,
-      nameTable
-    );
+    onChangeSelected(idobj);
   };
   const onChangeInput = () => {};
 
@@ -95,9 +89,7 @@ const Project = ({ request }) => {
           onClickRow={(IDOBJ) => {
             onChangeRow(IDOBJ);
           }}
-          onDoubleClickRow={() => {
-            console.log("click");
-          }}
+          onDoubleClickRow={() => {}}
           onBtnInsert={insertClickHandler}
           onBtnDelete={deleteClickHandler}
           btn_insert={true}
@@ -117,34 +109,20 @@ const Project = ({ request }) => {
           folders={itemFolders}
           afterSubmit={onLoadRow}
           onAnnulla={onLoadRow}
+          onChangeValue={onChangeForm}
         >
           <FrameContainer id="terget_folder">
             <Frame label="DATI DI PROVA">
               <FrameInRow width={[80, 10, 10]}>
-                <Input
-                  label="prova"
-                  id="Soggetti_Nome1"
-                  val={formValue}
-                  onChange={onChangeInput}
-                ></Input>
-                <Input
-                  label="prova"
-                  id="Soggetti_Nome2"
-                  val={formValue}
-                  onChange={onChangeInput}
-                ></Input>
-                <InputData
-                  label="Scadenza"
-                  id="Soggetti_ScadenzaOBJ"
-                  val={formValue}
-                  onChange={onChangeInput}
-                />
+                <Input label="prova" id="Soggetti_Nome1"></Input>
+                <Input label="prova" id="Soggetti_Nome2"></Input>
+                <InputData label="Scadenza" id="Soggetti_ScadenzaOBJ" />
               </FrameInRow>
               <FrameInRow width={[5, 30, 40]}>
                 <InputCheckBox
                   label="checkbox"
                   val={formValue}
-                  onChange={onChangeInput}
+                  onChangeValue={onChangeForm}
                 />
                 <InputList
                   label="lista"
@@ -155,6 +133,7 @@ const Project = ({ request }) => {
                   field_description={[""]}
                   val={formValue}
                   onChange={onChangeInput}
+                  numerocaratteri={3}
                 />
               </FrameInRow>
             </Frame>
