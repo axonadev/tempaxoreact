@@ -119,11 +119,7 @@ const Project = ({ request }) => {
                 <InputData label="Scadenza" id="Soggetti_ScadenzaOBJ" />
               </FrameInRow>
               <FrameInRow width={[5, 30, 40]}>
-                <InputCheckBox
-                  label="checkbox"
-                  val={formValue}
-                  onChangeValue={onChangeForm}
-                />
+                <InputCheckBox label="checkbox" />
                 <InputList
                   label="lista"
                   id=""
@@ -131,8 +127,6 @@ const Project = ({ request }) => {
                   nameList=""
                   field_id=""
                   field_description={[""]}
-                  val={formValue}
-                  onChange={onChangeInput}
                   numerocaratteri={3}
                 />
               </FrameInRow>
