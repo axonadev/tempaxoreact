@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Header, SideMenu, ContentForm, ProjectMenu } from "axonaui";
+import { Header, SideMenu, ContentForm, ProjectMenu, useList } from "axonaui";
 import { useEnv } from "axonalib";
 import Project from "../Pages/Project";
 import useProjectMenu from "../hooks/useProjectMenu";
@@ -10,6 +10,17 @@ const Layout = () => {
     localStorage.getItem("axn_sidemenuswitch") === "true" ? true : false
   );
   const [formPj, setFormPj] = useState(null);
+
+  const { list } = useList(
+    [
+      {
+        command: "articoli/articolisel/leggicombotipi",
+        nameView: "v_tipiarticolo",
+      },
+    ],
+    localStorage.getItem("axn_token"),
+    REACT_APP_SERVERAPI
+  );
 
   const {
     items: pjItems,
@@ -55,7 +66,7 @@ const Layout = () => {
         pathImg={REACT_APP_IMGFOLDER}
       />
       <ContentForm sidemenuopen={styleMenu}>
-        <Project request={answerReq} />
+        <Project request={answerReq} list={list} />
       </ContentForm>
       <ProjectMenu
         items={pjItems}

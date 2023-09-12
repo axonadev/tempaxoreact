@@ -14,7 +14,7 @@ import {
 } from "axonaui";
 import { useEnv } from "axonalib";
 
-const Project = ({ request }) => {
+const Project = ({ request, list }) => {
   const { REACT_APP_SERVERAPI } = useEnv();
 
   const moduloForm = "soggetti";
@@ -41,6 +41,10 @@ const Project = ({ request }) => {
       localStorage.getItem("axn_token") +
       cmd_getForm,
     nameTable
+  );
+
+  const listTipiArticolo = list.filter(
+    (item) => item.nameView === "v_tipiarticolo"
   );
 
   const insertClickHandler = (idGriglia) => {
