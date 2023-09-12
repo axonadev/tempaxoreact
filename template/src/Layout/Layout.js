@@ -33,7 +33,7 @@ const Layout = () => {
     var key;
     for (var i = 0; i < localStorage.length; i++) {
       key = localStorage.key(i);
-      if (key.indexOf("axn_list_") > -1) {
+      if (key.indexOf("axn_list_") > -1 || key.indexOf("axn_record_") > -1) {
         localStorage.removeItem(key);
       }
     }
