@@ -5,7 +5,7 @@ import Project from "../Pages/Project";
 import useProjectMenu from "../hooks/useProjectMenu";
 
 const Layout = () => {
-  const { REACT_APP_IMGFOLDER } = useEnv();
+  const { REACT_APP_IMGFOLDER, REACT_APP_SERVERAPI } = useEnv();
   const [styleMenu, setStyleMenu] = useState(
     localStorage.getItem("axn_sidemenuswitch") === "true" ? true : false
   );
