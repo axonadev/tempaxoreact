@@ -17,6 +17,7 @@ import { useEnv } from "axonalib";
 const Project = ({ request, list }) => {
   const { REACT_APP_SERVERAPI } = useEnv();
 
+  const numberGrid = 1;
   const moduloForm = "soggetti";
   const nameView = "v_" + moduloForm;
   const nameTable = moduloForm;
@@ -81,7 +82,15 @@ const Project = ({ request, list }) => {
   }, [request]);
   return (
     <>
-      <Frame label="TESTATA" type="form_t" stato={statoGriglia}>
+      <Frame
+        label="TESTATA"
+        type="form_t"
+        stato={statoGriglia}
+        selezionato={focusForm === "form_t" ? true : false}
+        onActive={() => {
+          setFocusForm("form_t");
+        }}
+      >
         <Grid
           id="maint_t"
           loadGrid={
@@ -100,6 +109,7 @@ const Project = ({ request, list }) => {
           nameView={nameView}
           reload={reloadGriglia}
           itemSearch={itemsSearch}
+          selezionato={focusForm === "form_t" ? true : false}
         />
       </Frame>
       <FormButton onAnnulla={onLoadRow} id_submit="form_t" />
