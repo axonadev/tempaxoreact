@@ -15,6 +15,7 @@ const App = () => {
     <CssStruct
       url={REACT_APP_CSSFOLDER}
       piva={localStorage.getItem("axn_piva")}
+      template={"template1"}
     >
       <div className="App">
         {connesso === 0 && <LoadingSpinner />}

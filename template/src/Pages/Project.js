@@ -14,7 +14,7 @@ import {
 } from "axonaui";
 import { useEnv } from "axonalib";
 
-const Project = ({ request, list }) => {
+const Project = ({ request, list, help }) => {
   const { REACT_APP_SERVERAPI } = useEnv();
 
   const numberGrid = 1;
@@ -25,9 +25,8 @@ const Project = ({ request, list }) => {
   const cmd_getGrid = "/" + moduloForm + "/" + moduloForm + "sel/leggi";
 
   const itemFolders = [
-    { key: 1, label: "label", img: "image", target: "terget_folder" },
+    { key: 1, label: "label", img: "faAddressCard", target: "terget_folder" },
   ];
-  const idFolder1 = "terget_folder";
   const itemsSearch = ["Soggetti_Nome1", "Soggetti_Nome2"];
 
   const [focusForm, setFocusForm] = useState("");
@@ -90,6 +89,8 @@ const Project = ({ request, list }) => {
         onActive={() => {
           setFocusForm("form_t");
         }}
+        ridimensiona={true}
+        setup={true}
       >
         <Grid
           id="maint_t"

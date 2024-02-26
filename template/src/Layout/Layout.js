@@ -5,6 +5,9 @@ import Project from "../Pages/Project";
 import useProjectMenu from "../hooks/useProjectMenu";
 
 const Layout = () => {
+  const titolo = "titolo";
+  const versione = "00.00.00";
+
   const { REACT_APP_IMGFOLDER, REACT_APP_SERVERAPI } = useEnv();
   const [styleMenu, setStyleMenu] = useState(
     localStorage.getItem("axn_sidemenuswitch") === "true" ? true : false
@@ -21,6 +24,8 @@ const Layout = () => {
     localStorage.getItem("axn_token"),
     REACT_APP_SERVERAPI
   );
+
+  const [isHelp, setIsHelp] = useState(false);
 
   const {
     items: pjItems,
@@ -50,6 +55,10 @@ const Layout = () => {
     }
   }, []);
 
+  const onHelpstato = (valore) => {
+    setIsHelp(valore);
+  };
+
   return (
     <>
       <Header
@@ -66,13 +75,15 @@ const Layout = () => {
         pathImg={REACT_APP_IMGFOLDER}
       />
       <ContentForm sidemenuopen={styleMenu}>
-        <Project request={answerReq} list={list} />
+        <Project request={answerReq} list={list} help={isHelp} />
       </ContentForm>
       <ProjectMenu
         items={pjItems}
         onClick={projectMenuClickHandler}
         pathImg={REACT_APP_IMGFOLDER}
         onRequestSubmit={projectMenuRequestSubmitHandler}
+        versione={versione}
+        onHelp={onHelpstato}
       >
         {formPj}
       </ProjectMenu>
